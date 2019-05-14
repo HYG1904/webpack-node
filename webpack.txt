@@ -1,0 +1,45 @@
+全局安装 npm i webpack -g
+本地安装 npm i webpack --save-dev
+卸载命令 
+	#全局卸载
+	npm uninstall webpack -g
+
+	#局部卸载
+	npm uninstall webpack -s
+
+创建backage.json文件	npm init -y
+
+css 需要安装style-loader和css-loader
+	在引入css模块前加入"style-loader!css-loader!./index.css"
+	在webpack.config.js中不能串联，{test:/\.css$/,             
+									use: [
+										{loader: 'style-loader'},
+										{loader: 'css-loader'}
+										]
+									}
+
+安装less的loader
+	npm install --save-dev less less-loader
+
+#安装file-loader加载图片
+	npm install --save-dev file-loader -s
+
+#安装url-laoder 加载字体
+	npm install --save-dev url-loader -s
+
+#安装csv-loader xml-loader 加载数据（CSV、TSV 和 XML）
+	npm install --save-dev csv-loader xml-loader -s
+
+用于自动生成html npm i html-webpack-plugin --save-dev
+
+#使用babel-loader转换es6代码 npm i --save-dev babel-loader babel-core
+
+#自动为css添加兼容性写法如display:flex  npm i postcss-loader --save-dev
+
+如果需要下载指定版本，则在插件名称后需要加上@版本号，如下:
+npm install angular-touch@1.4.6
+
+#检查版本是否安装成功
+webpack -v
+webpack.config.js中path需要引入var path=require("path")
+	 path:path.resolve(__dirname,"./dist/js")
