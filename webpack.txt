@@ -1,45 +1,68 @@
-全局安装 npm i webpack -g
-本地安装 npm i webpack --save-dev
-卸载命令 
+﻿#全局安装 npm i webpack -g
+#本地安装 npm i webpack --save-dev
+#卸载命令 
 	#全局卸载
 	npm uninstall webpack -g
 
 	#局部卸载
 	npm uninstall webpack -s
 
-创建backage.json文件	npm init -y
+#检查版本是否安装成功
+webpack -v
 
-css 需要安装style-loader和css-loader
+webpack.config.js中path需要引入var path=require("path")
+	 path:path.resolve(__dirname,"./dist/js")
+
+#创建backage.json文件	npm init -y
+
+#css 需要安装style-loader和css-loader
 	在引入css模块前加入"style-loader!css-loader!./index.css"
 	在webpack.config.js中不能串联，{test:/\.css$/,             
-									use: [
-										{loader: 'style-loader'},
-										{loader: 'css-loader'}
-										]
-									}
-
-安装less的loader
+	module:{
+       	 rules:[
+		{test:/\.css$/, loader: "style-loader!css-loader!postcss-loader"}
+		]
+    	},
+#安装less的loader
 	npm install --save-dev less less-loader
+
+#安装postcss-loader 和 autoprefixer 为css自动加前缀
+	npm i postcss-loader autoprefixer --save-dev	
+
+#在vscode中可以安装autoprefixer插件。
+	1、安装node
+	2、npm i autoprefixer -g
+	3、设置快捷键，首选项->键盘映射->新版vscode中需要找到autoprefix CSS 然后添加快捷键。
+	4、在css文件中使用快捷键可以使用自动加前缀。
 
 #安装file-loader加载图片
 	npm install --save-dev file-loader -s
 
-#安装url-laoder 加载字体
+#安装url-loader 加载图片
 	npm install --save-dev url-loader -s
+
+#安装html-withimg-loader 打包html中的图片
+ 	npm i html-withimg-loader --save-dev
+
+#js中的图片需要先将图片引用进来
+	var imgUrl=require("./img/bg.png")
+	imgTempl='<img src=" '+imgUrl+' ">';
+	document.body.innerHtml=imgTempl;
+
+#react 中js中图片
+	render(){
+		return (<img src={require("./img/bg.png")} />)
+	}
 
 #安装csv-loader xml-loader 加载数据（CSV、TSV 和 XML）
 	npm install --save-dev csv-loader xml-loader -s
 
-用于自动生成html npm i html-webpack-plugin --save-dev
+#用于自动生成html
+	 npm i html-webpack-plugin --save-dev
 
-#使用babel-loader转换es6代码 npm i --save-dev babel-loader babel-core
+#使用babel-loader转换es6代码
+	 npm i --save-dev babel-loader babel-core
 
-#自动为css添加兼容性写法如display:flex  npm i postcss-loader --save-dev
 
-如果需要下载指定版本，则在插件名称后需要加上@版本号，如下:
-npm install angular-touch@1.4.6
-
-#检查版本是否安装成功
-webpack -v
-webpack.config.js中path需要引入var path=require("path")
-	 path:path.resolve(__dirname,"./dist/js")
+#如果需要下载指定版本，则在插件名称后需要加上@版本号，如下:
+	npm install angular-touch@1.4.6
